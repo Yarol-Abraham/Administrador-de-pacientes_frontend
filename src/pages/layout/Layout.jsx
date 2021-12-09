@@ -7,9 +7,9 @@ import Aside from './Aside';
 function Layout() {
 
     return (
-        <main className="max-h-screen max-w-full flex flex-col lg:flex-row">
+        <main className="min-h-screen max-h-full max-w-full flex flex-col lg:flex-row">
           <Aside />
-          <section className="w-full h-screen overflow-y-auto">
+          <section className="flex flex-col justify-between w-full h-full overflow-y-auto">
             <Header />
             <div className="m-4 p-4 h-auto bg-white shadow-md overflow-auto lg:overflow-hidden">
               <Outlet />
