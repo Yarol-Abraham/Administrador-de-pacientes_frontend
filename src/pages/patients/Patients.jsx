@@ -1,6 +1,7 @@
 import SearchPatient from "./SearchPatient";
 import OptionsPatient from './OptionsPatient';
 import ListPatients from './ListPatients';
+import PaginationPatient from "./PaginationPatient";
 
 function Patients() {
 
@@ -11,6 +12,7 @@ function Patients() {
         <OptionsPatient />
       </div>
       <ListPatients />
+      <PaginationPatient />
       </>
     )
     
