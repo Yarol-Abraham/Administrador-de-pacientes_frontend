@@ -12,7 +12,7 @@ function Header() {
                 alt="inicio" 
             />
           </div>
-          <p className="font-thin text-base text-gray-400"><i class="fas fa-angle-right"></i> Yarol Abraham</p>
+          <p className="font-thin text-base text-gray-400"><i className="fas fa-angle-right"></i> Yarol Abraham</p>
        </header>
     )
 

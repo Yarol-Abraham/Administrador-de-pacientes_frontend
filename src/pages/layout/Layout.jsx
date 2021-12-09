@@ -11,7 +11,7 @@ function Layout() {
           <Aside />
           <section className="w-full h-screen overflow-y-auto">
             <Header />
-            <div className="m-4 p-4 h-full lg:h-3/4 bg-white shadow-md">
+            <div className="m-4 p-4 h-auto bg-white shadow-md overflow-auto lg:overflow-hidden">
               <Outlet />
             </div>
             <Footer />

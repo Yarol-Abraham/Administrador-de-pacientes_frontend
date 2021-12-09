@@ -7,6 +7,8 @@ import {
 import Layout from '../pages/layout/Layout';
 import Dashboard from '../pages/Dashboard';
 import Patients from '../pages/patients/Patients';
+import CreatePatient from '../pages/patients/CreatePatient';
+import EditPatient from '../pages/patients/EditPatient';
 
 function RoutesPages() {
 
@@ -16,8 +18,14 @@ function RoutesPages() {
           <Routes>
             <Route path="/" element={<Layout />} >
               <Route index element={<Dashboard />} />
-              <Route path="pacientes" element={<Patients />} />
             </Route>
+
+            <Route path="/pacientes" element={<Layout />} >
+              <Route index element={<Patients />} />
+              <Route path="nuevo" element={<CreatePatient />} />
+              <Route path="editar/:id" element={<EditPatient />} />
+            </Route>
+
           </Routes>
         </Router>
       </>
