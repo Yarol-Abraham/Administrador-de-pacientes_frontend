@@ -6,14 +6,16 @@ import {
 
 import Layout from '../pages/layout/Layout';
 import Dashboard from '../pages/Dashboard';
-//pacientes
+// pacientes
 import Patients from '../pages/patients/Patients';
 import CreatePatient from '../pages/patients/CreatePatient';
 import EditPatient from '../pages/patients/EditPatient';
-//usuario
+// usuario
 import Account from '../pages/auth/account';
 import ChangePassword from '../pages/auth/ChangedPassword';
-
+// Autenticación
+import Login from '../pages/auth/Login';
+import Signup from '../pages/auth/Signup';
 
 function RoutesPages() {
 
@@ -21,15 +23,21 @@ function RoutesPages() {
       <>
         <Router>
           <Routes>
+            {/* Autenticación */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+              
              {/* Dashboard */}
             <Route path="/" element={<Layout />} >
               <Route index element={<Dashboard />} />
             </Route>
+
             {/* Usuario */}
             <Route path="/account" element={<Layout />} >
               <Route index element={<Account />} />
               <Route path="password" element={<ChangePassword />} />
             </Route>
+            
             {/* Pacientes */}
             <Route path="/pacientes" element={<Layout />} >
               <Route index element={<Patients />} />
