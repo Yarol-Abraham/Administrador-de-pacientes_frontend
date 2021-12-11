@@ -1,6 +1,24 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import useAuth from '../../hooks/useAuth';
+import { login } from '../../redux/actions/auth/authAction';
 function Login() {
+
+  const [ data, setData ] = useState({
+    usuario: "",
+    password: ""
+  });
+
+  const { handleAuth } = useAuth(data, login);
+
+  const handleChange = function(e) {
+    setData({...data, [e.target.name]: e.target.value });
+  }
+
+  const handleForm = function(e) {
+    e.preventDefault();
+    handleAuth();
+  }
 
     return (
       <>
@@ -9,22 +27,33 @@ function Login() {
             <div className="hidden sm:block h-full w-2/4 ">
               <img className="w-full h-full" src="/src/public/images/auth/doctor.png" alt="login" />
             </div>
-            <form className="bg-white rounded-md p-4 w-full sm:w-2/4 flex flex-col justify-center">
+            <form 
+              className="bg-white rounded-md p-4 w-full sm:w-2/4 flex flex-col justify-center"
+              onSubmit={handleForm}
+            >
               
               <h2 className="text-xl sm:text-2xl lg:text-4xl text-center text-blue-500">Iniciar Sesión</h2>
               <p className="text-sm md:text-md text-center font-thin text-gray-400">crear, edita y lleva un mejor control de tus pacientes</p>
               
               <label htmlFor="Usuario">Usuario</label>
-              <input 
+              <input
+                name='usuario'
+                onChange={handleChange} 
                 type="text" 
                 className="mt-1 p-2 block w-full rounded-md bg-gray-100 border outline-none
-              focus:border-gray-500 focus:bg-white focus:ring-0" />
+              focus:border-gray-500 focus:bg-white focus:ring-0" 
+                // required
+              />
 
               <label htmlFor="password">Contraseña</label>
               <input 
+                name='password'
+                onChange={handleChange}
                 type="password" 
                 className="mt-1 p-2 block w-full rounded-md bg-gray-100 border outline-none
-              focus:border-gray-500 focus:bg-white focus:ring-0" />
+              focus:border-gray-500 focus:bg-white focus:ring-0" 
+                //required
+              />
 
                 <button 
                   type="submit" 

@@ -1,18 +1,23 @@
 import {
     BrowserRouter as Router,
     Routes as Routes,
-    Route as Route
+    Route as Route,
+    Navigate,
+    useLocation
 } from 'react-router-dom';
-
+// layout
 import Layout from '../pages/layout/Layout';
 import Dashboard from '../pages/Dashboard';
+
 // pacientes
 import Patients from '../pages/patients/Patients';
 import CreatePatient from '../pages/patients/CreatePatient';
 import EditPatient from '../pages/patients/EditPatient';
+
 // usuario
 import Account from '../pages/auth/account';
 import ChangePassword from '../pages/auth/ChangedPassword';
+
 // Autenticación
 import Login from '../pages/auth/Login';
 import Signup from '../pages/auth/Signup';
@@ -51,6 +56,17 @@ function RoutesPages() {
     )
 
 }
+
+// function RequireAuth( children ) {
+//   let auth = useAuth();
+//   let location = useLocation();
+
+//   if (!auth.user) {
+//     return <Navigate to="/login" state={{ from: location }} />;
+//   }
+
+//   return children;
+// }
   
 export default RoutesPages
   
