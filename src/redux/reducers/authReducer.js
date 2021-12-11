@@ -3,12 +3,15 @@ import {
     SIGNUP_USER_SUCCESS,
     SIGNUP_USER_ERROR,
     LOGIN_USER_SUCCESS,
-    LOGIN_USER_ERROR
+    LOGIN_USER_ERROR,
+    AUTH_USER_SUCCESS,
+    AUTH_USER_ERROR
 } from '../types/auth';
 
 const initialState = {
     user: null, 
     errors: [],
+    message: "",
     status: '', // sucess / error / fail
 }
 
@@ -36,7 +39,24 @@ function authReducer(state = initialState, action){
             return {
                 ...state,
                 user: action.payload.user,
-                status: 'success'
+                status: 'success',
+                errors: []
+            }
+        
+        case AUTH_USER_SUCCESS:
+            return{
+                ...state,
+                user: action.payload.user,
+                status: action.payload.status
+            }
+        
+        case AUTH_USER_ERROR:
+            removeToken();
+            return{
+                ...state,
+                user: null,
+                message: action.payload.message,
+                status: action.payload.status
             }
 
         default:

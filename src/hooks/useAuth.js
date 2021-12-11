@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-function useAuth (data = null, fn){
+function useAuth (data = {}, fn){
     
     const dispatch = useDispatch();
     const auth = useSelector( state => state.auth );
   
-    function handleAuth(){ dispatch( fn(data) ); }
- 
+    function handleAuth(){ if(typeof fn === 'function') dispatch( fn(data) ); }
+    
     return {
         handleAuth,
         auth

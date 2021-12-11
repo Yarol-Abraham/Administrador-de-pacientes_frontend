@@ -36,6 +36,6 @@ export const authDispatch = (data)=>({
 });
 
 export const authErrorDispatch = (data)=>({
-    type: AUTH_USER_SUCCESS,
+    type: AUTH_USER_ERROR,
     payload: data
 });
