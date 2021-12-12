@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { login } from '../../redux/actions/auth/authAction';
 function Login() {
@@ -9,8 +9,13 @@ function Login() {
     password: ""
   });
 
-  const { handleAuth } = useAuth(data, login);
-
+  let navigate = useNavigate();
+  
+  const { handleAuth, auth } = useAuth(data, login);
+  useEffect(() => {
+    if(auth.user && auth.status === 'success') navigate("/", { replace: true });
+  }, [auth.user, auth.status])
+  
   const handleChange = function(e) {
     setData({...data, [e.target.name]: e.target.value });
   }
@@ -22,7 +27,7 @@ function Login() {
 
     return (
       <>
-        <div className="min-h-screen min-w-full flex justify-center items-center">
+        <div id='main' className="min-h-screen min-w-full flex justify-center items-center">
           <div className="bg-white rounded-md shadow-md w-3/4 h-3/5 flex flex-row">
             <div className="hidden sm:block h-full w-2/4 ">
               <img className="w-full h-full" src="/src/public/images/auth/doctor.png" alt="login" />
@@ -55,12 +60,12 @@ function Login() {
                 //required
               />
 
-                <button 
-                  type="submit" 
-                  className="w-full my-2 rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                Iniciar Sesión
-                </button>
+              <button 
+                type="submit" 
+                className="w-full my-2 rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+              Iniciar Sesión
+              </button>
                 <Link to={"/signup"} className="text-center text-gray-400" >¿No tienes una cuenta?, crea una.</Link>
             </form>
           </div>

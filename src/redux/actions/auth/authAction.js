@@ -9,6 +9,8 @@ import tokenAuth from '../../../config/tokenAuth';
 import { 
     signupDispatch, 
     signupErrorDispatch,
+    loginDispatch,
+    loginErrorDispatch,
     logoutDispatch,
     authDispatch,
     authErrorDispatch
@@ -51,11 +53,12 @@ export function signup(data) // crear cuenta de usuario
             
             // obtener el error del servidor si existe
             if(error.response) err = error.response.data;
-            if(err.message) err = JSON.parse(err.message);
-
+            if(!err.message) return showAlert(
+                'error', 'Lo sentimos, Ha ocurrido un error al conectarse al servidor'
+            );
+            err = JSON.parse(err.message);
             // enviar una alerta al usuario 💥💥💥
             dispatch( signupErrorDispatch(err) );
-            
         }
     }
 }
@@ -64,9 +67,43 @@ export function login(data) // loguear usuario
 {
     return async (dispatch) =>{
         try {
-            console.log("login: ", data);
-        } catch (error) {
+            // cargando...          
+            showLoading();
+
+            // esperar respuesta del servidor
+            const response = await createAxios.post(`/user/login`, data);
             
+            // eliminar cargando...
+            hideLoading();
+
+            // respuesta obtenida del servidor 🟢🟢🟢
+            const { data: { user }, token } = response.data;
+            dispatch( loginDispatch({ user, token }) );
+
+        } catch (error) {
+            // eliminar cargando...
+            hideLoading();
+                        
+            // obtener los posibles errores
+            let err = "Lo sentimos, No podemos acceder la pagina 😓";
+
+            // si no hay internet / o no hay conexión con el servidor
+            if(error.message === 'Network Error') return showAlert(
+                'error', 'Lo sentimos, Ha ocurrido un error al conectarse al servidor'
+            );
+            
+            // obtener el error del servidor si existe
+            if(error.response){
+
+                err = error.response.data;
+                
+                // enviar una alerta al usuario 💥💥💥
+               showAlert( 'error', err.message);
+
+            }else{
+                // enviar una alerta al usuario 💥💥💥
+                showAlert( 'error', err);
+            } 
         }
     }
 }
@@ -124,8 +161,7 @@ export function authUser() // verificar si existe autenticación
             }else{
                 // enviar una alerta al usuario 💥💥💥
                 dispatch( authErrorDispatch({ message: err, status: 'error' }) ); 
-            }
-             
+            }    
         }
     }
 }
