@@ -3,6 +3,7 @@ import {
     SIGNUP_USER_ERROR,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_ERROR,
+    LOGOUT_USER_SUCCESS,
     AUTH_USER_SUCCESS,
     AUTH_USER_ERROR
 } from '../../types/auth';
@@ -26,6 +27,12 @@ export const loginDispatch = (data)=>({
 
 export const loginErrorDispatch = (data)=>({
     type: LOGIN_USER_ERROR,
+    payload: data
+});
+
+// cerrrar sesion
+export const logoutDispatch = (data)=>({
+    type: LOGOUT_USER_SUCCESS,
     payload: data
 });
 

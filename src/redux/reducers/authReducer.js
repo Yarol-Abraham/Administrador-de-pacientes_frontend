@@ -4,6 +4,7 @@ import {
     SIGNUP_USER_ERROR,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_ERROR,
+    LOGOUT_USER_SUCCESS,
     AUTH_USER_SUCCESS,
     AUTH_USER_ERROR
 } from '../types/auth';
@@ -43,6 +44,16 @@ function authReducer(state = initialState, action){
                 errors: []
             }
         
+        case LOGOUT_USER_SUCCESS:
+            removeToken()
+            return{
+                ...state,
+                user: action.payload.user,
+                status: action.payload.status,
+                errors:action.payload.errors,
+                message: action.payload.message
+            }
+
         case AUTH_USER_SUCCESS:
             return{
                 ...state,

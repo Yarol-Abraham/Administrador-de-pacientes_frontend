@@ -6,6 +6,9 @@ export const SIGNUP_USER_ERROR = "SIGNUP_USER_ERROR";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR"; 
 
+// cerrar sesión
+export const LOGOUT_USER_SUCCESS = "LOGOUT_USER_SUCCESS";
+
 // Autenticación
 export const AUTH_USER_SUCCESS = "AUTH_USER_SUCCESS";
 export const AUTH_USER_ERROR = "AUTH_USER_ERROR";

@@ -9,12 +9,13 @@ import tokenAuth from '../../../config/tokenAuth';
 import { 
     signupDispatch, 
     signupErrorDispatch,
+    logoutDispatch,
     authDispatch,
     authErrorDispatch
 } from './authDispatch';
 
 //alerts
-import { showAlert, hideAlert } from '../../../utils/alerts';
+import { showAlert } from '../../../utils/alerts';
 
 // loading
 import { hideLoading, showLoading } from '../../../utils/loading';
@@ -68,6 +69,18 @@ export function login(data) // loguear usuario
             
         }
     }
+}
+
+export function logout() // cerrar sesión
+{
+    return (dispatch)=>{ dispatch( 
+       logoutDispatch({
+            user: null, 
+            errors: [],
+            message: "",
+            status: '', // sucess / error / fail
+        }) 
+    )}
 }
 
 export function authUser() // verificar si existe autenticación
