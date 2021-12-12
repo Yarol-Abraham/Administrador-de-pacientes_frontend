@@ -10,7 +10,6 @@ import {
     signupDispatch, 
     signupErrorDispatch,
     loginDispatch,
-    loginErrorDispatch,
     logoutDispatch,
     authDispatch,
     authErrorDispatch

@@ -2,7 +2,6 @@ import {
     SIGNUP_USER_SUCCESS,
     SIGNUP_USER_ERROR,
     LOGIN_USER_SUCCESS,
-    LOGIN_USER_ERROR,
     LOGOUT_USER_SUCCESS,
     AUTH_USER_SUCCESS,
     AUTH_USER_ERROR
@@ -22,11 +21,6 @@ export const signupErrorDispatch = (data)=>({
 // loguear usuario
 export const loginDispatch = (data)=>({
     type: LOGIN_USER_SUCCESS,
-    payload: data
-});
-
-export const loginErrorDispatch = (data)=>({
-    type: LOGIN_USER_ERROR,
     payload: data
 });
 
