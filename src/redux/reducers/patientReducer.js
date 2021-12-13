@@ -5,6 +5,8 @@ import {
     LIST_PATIENT_SUCCESS,
     LIST_PATIENT_ERROR,
 
+    DELETE_PATIENT_SUCCESS,
+
     RESET_INITIAL_STATE
 } from '../types/patients';
 
@@ -38,6 +40,12 @@ function patientReducer(state = initialState, action) {
                 ...state,
                 patients: action.payload.data,
                 status: action.payload.status
+            }
+        
+        case DELETE_PATIENT_SUCCESS:
+            return{
+                ...state,
+                patients: [ ...state.patients.filter( el => el._id !== action.payload._id ) ]
             }
 
         case LIST_PATIENT_ERROR:

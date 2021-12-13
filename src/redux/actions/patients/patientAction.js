@@ -9,6 +9,8 @@ import {
     listPatients,
     listErrorPatients,
 
+    deletePatient,
+    
     resetInitialState
 } from './patientDispatch';
 
@@ -127,6 +129,42 @@ export function findAll()
                     message: ''
                 }) 
             );
+        }
+    }
+}
+
+export function deleteId(data) {
+    return async (dispatch)=> {
+        try{
+            // cargando...
+            showLoading();
+
+            // esperar respuesta del servidor 
+            await createAxios.delete(`/patients/delete/${data._id}`);
+                        
+            // eliminar cargando
+            hideLoading();
+
+            // respuesta obtenida del servidor 🟢🟢🟢
+            dispatch( deletePatient({ _id: data._id }) );
+
+            // mostrar mensaje de alerta al usuario
+            showAlert('success', 'Registro eliminado correctamente');
+
+        }catch(error){
+            // eliminar cargando...
+            hideLoading();
+
+            // obtener los posibles errores 
+            let err = "Lo sentimos, ha ocurrido un error al cargar la pagina 😥";
+
+            // si no hay internet / o no hay conexión con el servidor
+            if(error.message === 'Network Error') return showAlert(
+                'error', 'Lo sentimos, Ha ocurrido un error al conectarse al servidor'
+            );
+            
+            // mostrar alerta de error al usuario 💥💥💥
+            showAlert('error', err);
         }
     }
 }

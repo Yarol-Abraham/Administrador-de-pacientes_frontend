@@ -40,7 +40,7 @@ function ListPatients() {
                           to={`/pacientes/editar/${el._id}`}
                           className="w-10 p-2 md:p-1 text-white bg-indigo-400 text-center" 
                         ><i className="fas fa-edit"></i></Link>
-                        <DeletePatient />
+                        <DeletePatient patient={el} />
                       </div>
                     </td>
                   </tr>
