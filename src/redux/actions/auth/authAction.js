@@ -143,7 +143,7 @@ export function authUser() // verificar si existe autenticación
              hideLoading();
             
              // obtener los posibles errores
-             let err = "Lo sentimos, No podemos acceder la pagina 😓";
+             let err = "Lo sentimos, No podemos acceder a la pagina 😓";
 
              // si no hay internet / o no hay conexión con el servidor
             if(error.message === 'Network Error') return showAlert(
