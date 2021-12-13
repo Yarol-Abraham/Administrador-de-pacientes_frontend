@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Modal() {
+function Modal({ patient }) {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
@@ -9,7 +9,7 @@ function Modal() {
         type="button"
         onClick={() => setShowModal(true)}
     >
-            <i className="fas fa-info"></i>
+      <i className="fas fa-info"></i>
     </button>
     
       {showModal ? (
@@ -33,7 +33,7 @@ function Modal() {
                     <input 
                         type="text" 
                         className="mt-1 p-2 block w-full rounded-md bg-gray-100 border outline-none" 
-                        value="Yarol Abraham Choc Reyes"
+                        value={`${patient.nombres} ${patient.apellidos}`}
                         disabled
                     />
                  
@@ -43,7 +43,7 @@ function Modal() {
                         <input 
                             type="text" 
                             className="mt-1 p-2 block w-full rounded-md bg-gray-100 border outline-none" 
-                            value="12345678"
+                            value={patient.telefono}
                             disabled
                         />
                     </div>
@@ -52,7 +52,7 @@ function Modal() {
                         <input 
                             type="text" 
                             className="mt-1 p-2 block w-full rounded-md bg-gray-100 border outline-none" 
-                            value="Ingeniero en sistemas"
+                            value={patient.ocupacion}
                             disabled
                         />
                     </div>
@@ -62,17 +62,19 @@ function Modal() {
                     <input 
                         type="text" 
                         className="mt-1 p-2 block w-full rounded-md bg-gray-100 border outline-none" 
-                        value="Guatemala - alta verapaz"
+                        value={patient.direccion}
                         disabled
                     />
 
                 <div className="my-2">
                     <label className="font-light" htmlFor="Sintomas">Sintomas</label>
                     <div className="flex flex-row flex-wrap">
-                        <p className="text-white text-sm m-1 p-1 rounded-md bg-blue-300" >Lorem ipsum dolor sit amet consectetur.</p>
-                        <p className="text-white text-sm m-1 p-1 rounded-md bg-blue-300" >Lorem ipsum dolor sit.</p>
-                        <p className="text-white text-sm m-1 p-1 rounded-md bg-blue-300" >Lorem ipsum dolor sit consectetur.</p>
-                        <p className="text-white text-sm m-1 p-1 rounded-md bg-blue-300" >Lorem ipsum sit amet.</p>       
+                      {
+                        patient.sintomas.length > 0 ? 
+                        patient.sintomas.map(el=> (
+                          <p key={el} className="text-white text-sm m-1 p-1 rounded-md bg-blue-300" >{el}</p>       
+                          )) : null
+                      }     
                     </div>
                 </div>
 
@@ -82,7 +84,7 @@ function Modal() {
                         name="descripcion" 
                         cols="30" 
                         rows="10"
-                        defaultValue=" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga nostrum ducimus beatae molestias nulla magnam totam in quibusdam ipsum accusantium ipsa, voluptatem quis est repellendus veniam repellat nisi facilis? Nesciunt!"
+                        defaultValue={patient.descripcion}
                         className="outline-none border rounded-md bg-gray-100 "
                         disabled
                     >

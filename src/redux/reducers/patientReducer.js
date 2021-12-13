@@ -40,6 +40,16 @@ function patientReducer(state = initialState, action) {
                 status: action.payload.status
             }
 
+        case LIST_PATIENT_ERROR:
+            return{
+                ...state,
+                patient: action.payload.patient,
+                patients: action.payload.patients,
+                errors: action.payload.errors,
+                status: action.payload.status, // success / error 0 fail
+                message: action.payload.message
+            }
+        
         case RESET_INITIAL_STATE:
             return {
                 ...state,

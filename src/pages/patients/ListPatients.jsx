@@ -35,7 +35,7 @@ function ListPatients() {
                     <td className="border p-1 text-sm">{el.telefono}</td>
                     <td className="border p-1">
                       <div className="flex flex-row items-center justify-center">
-                        <Modal />
+                        <Modal patient={el} />
                         <Link 
                           to={`/pacientes/editar/${el._id}`}
                           className="w-10 p-2 md:p-1 text-white bg-indigo-400 text-center" 

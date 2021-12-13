@@ -117,6 +117,16 @@ export function findAll()
             
             // mostrar alerta de error al usuario 💥💥💥
             showAlert('error', err);
+
+            // restablecer todos los valores
+            dispatch( listErrorPatients({
+                    patient: null,
+                    patients: [],
+                    errors: [],
+                    status: '', 
+                    message: ''
+                }) 
+            );
         }
     }
 }
