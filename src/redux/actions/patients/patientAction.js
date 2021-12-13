@@ -5,6 +5,10 @@ import createAxios from '../../../config/axios';
 import {
     createPatient,
     createErrorPatient,
+
+    listPatients,
+    listErrorPatients,
+
     resetInitialState
 } from './patientDispatch';
 
@@ -14,7 +18,8 @@ import { showAlert } from '../../../utils/alerts';
 // loading
 import { hideLoading, showLoading } from '../../../utils/loading';
 
-const formatData = function(data) {
+const formatData = function(data) 
+{
     const object = { ...data };
     object.telefono = Number(object.telefono);
     if(object.sintomas.includes(',')){
@@ -25,7 +30,8 @@ const formatData = function(data) {
     return object;
 }
 
-export function create(dataForm) {
+export function create(dataForm) 
+{
     return async (dispatch)=>{
         try {
             // cargando...
@@ -48,10 +54,10 @@ export function create(dataForm) {
             // restablecer el status
            setTimeout(() => {
             dispatch(resetInitialState({ status: '' }) );
-           }, 1000);
+           }, 100);
 
         } catch (error) {
-             // eliminar cargando...
+            // eliminar cargando...
             hideLoading();
 
             // obtener los posibles errores 
@@ -70,7 +76,47 @@ export function create(dataForm) {
             err = JSON.parse(err.message);
             // enviar los errores al usuario 💥💥💥
             dispatch( createErrorPatient(err) );
+        }  
+    }
+}
+
+export function findAll() 
+{
+    return async (dispatch) =>{
+        try {
+            // cargando...
+            showLoading();
+
+            // esperar respuesta del servidor
+            const response = await createAxios.get('/patients/all');
+            
+            // eliminar cargando
+            hideLoading();
+
+            // respuesta obtenida del servidor 🟢🟢🟢
+            const { data, status } = response.data;
+            dispatch( listPatients({ data, status }) );
+            
+            // restablecer el status
+            setTimeout(() => {
+                dispatch(resetInitialState({ status: '' }) );
+            }, 100);
+
+        } catch (error) {
+
+            // eliminar cargando...
+            hideLoading();
+
+            // obtener los posibles errores 
+            let err = "Lo sentimos, ha ocurrido un error al cargar la pagina 😥";
+
+            // si no hay internet / o no hay conexión con el servidor
+            if(error.message === 'Network Error') return showAlert(
+                'error', 'Lo sentimos, Ha ocurrido un error al conectarse al servidor'
+            );
+            
+            // mostrar alerta de error al usuario 💥💥💥
+            showAlert('error', err);
         }
-        
     }
 }

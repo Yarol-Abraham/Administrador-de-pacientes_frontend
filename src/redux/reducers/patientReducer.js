@@ -1,6 +1,10 @@
 import {
     CREATE_PATIENT_SUCCESS,
     CREATE_PATIENT_ERROR,
+
+    LIST_PATIENT_SUCCESS,
+    LIST_PATIENT_ERROR,
+
     RESET_INITIAL_STATE
 } from '../types/patients';
 
@@ -28,7 +32,14 @@ function patientReducer(state = initialState, action) {
                 patients: [ ...state.patients, action.payload.data ],
                 status: action.payload.status
             }
-        
+            
+        case LIST_PATIENT_SUCCESS:
+            return{
+                ...state,
+                patients: action.payload.data,
+                status: action.payload.status
+            }
+
         case RESET_INITIAL_STATE:
             return {
                 ...state,
