@@ -150,8 +150,12 @@ export function findAll(params = {})
             // formatear la url si existe parametros
 
             let url = "/patients/all";
-            if(Object.values(params).length > 0 ) url = `/patients/all?${params.buscar}=${params.valor}`; 
-            
+            if(Object.values(params).length > 0 ){
+                if(params.buscar && params.valor) url = `/patients/all?${params.buscar}=${params.valor}`;
+                if(params.sort) url = `/patients/all?sort=${params.sort}`;
+            }
+
+            console.log(url);
             // esperar respuesta del servidor
             const response = await createAxios.get(url);
             

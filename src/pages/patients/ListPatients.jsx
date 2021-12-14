@@ -7,6 +7,8 @@ import DeletePatient from './DeletePatient';
 import usePatient from '../../hooks/usePatient';
 import { findAll } from '../../redux/actions/patients/patientAction';
 
+import SortPatient from './SortPatient';
+
 function ListPatients() {
 
   const { handlePatient, patient } = usePatient({}, findAll);
@@ -14,7 +16,8 @@ function ListPatients() {
 
   return (
     <div className="p-2 mt-2 w-full md:h-4/5 overflow-auto">
-      <h2 className='mb-4 font-semibold'>Listado de pacientes</h2>
+      <h2 className='mb-2 font-semibold'>Listado de pacientes</h2>
+      <SortPatient />
       {
         patient.patients.length > 0 ? (
           <table className="table-auto border w-full">
