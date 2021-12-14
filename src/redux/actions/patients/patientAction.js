@@ -6,8 +6,14 @@ import {
     createPatient,
     createErrorPatient,
 
+    updatePatient,
+    updateErrorPatient,
+
     listPatients,
     listErrorPatients,
+
+    getPatient,
+    getErrorPatient,
 
     deletePatient,
     
@@ -29,6 +35,7 @@ const formatData = function(data)
         let newArr = arr.filter( el => el.trim() !== '' );
        object.sintomas = newArr;
     }
+    if(object._id) delete object['_id'];
     return object;
 }
 
@@ -79,6 +86,57 @@ export function create(dataForm)
             // enviar los errores al usuario 💥💥💥
             dispatch( createErrorPatient(err) );
         }  
+    }
+}
+
+export function update(dataForm)
+{
+    return async (dispatch) =>{
+        try {
+            // cargando...
+            showLoading();
+
+            // esperar respuesta del servidor
+            const newData = formatData(dataForm); 
+            const response = await createAxios.patch(`/patients/update/${dataForm._id}`, newData);
+
+            // eliminar cargando
+            hideLoading();
+
+            // respuesta obtenida del servidor 🟢🟢🟢
+            const { data, status } = response.data;
+            dispatch( updatePatient({ data, status  }) );
+
+            // mostrar alerta
+            showAlert('success', "Se ha actualizado correctamente el registro");
+
+            // restablecer el status
+            setTimeout(() => {
+            dispatch( resetInitialState({ status: '' }) );
+            }, 100);
+
+        } catch (error) {
+
+            // eliminar cargando...
+            hideLoading();
+
+            // obtener los posibles errores 
+            let err;
+
+            // si no hay internet / o no hay conexión con el servidor
+            if(error.message === 'Network Error') return showAlert(
+                'error', 'Lo sentimos, Ha ocurrido un error al conectarse al servidor'
+            );
+            
+            // obtener el error del servidor si existe
+            if(error.response) err = error.response.data;
+            if(!err.message) return showAlert(
+                'error', 'Lo sentimos, Ha ocurrido un error al conectarse al servidor'
+            );
+            err = JSON.parse(err.message);
+            // enviar los errores al usuario 💥💥💥
+            dispatch( updateErrorPatient(err) );
+        }
     }
 }
 
@@ -133,7 +191,50 @@ export function findAll()
     }
 }
 
-export function deleteId(data) {
+export function getId(patient)
+{
+    return async (dispatch) =>{
+        try {
+            // cargando...
+            showLoading();
+
+            // esperar respuesta del servidor
+             const response = await createAxios.get(`/patients/get/${patient.id}`);
+             
+            // eliminar cargando
+            hideLoading();
+            
+            // respuesta obtenida del servidor 🟢🟢🟢
+            const { data, status } = response.data;
+            dispatch( getPatient({ data, status }) );
+            
+            // restablecer el status
+            setTimeout(() => {
+                dispatch(resetInitialState({ status: '' }) );
+            }, 100);
+             
+        } catch (error) {
+            
+            // eliminar cargando...
+            hideLoading();
+
+            // obtener los posibles errores 
+            let err = "Lo sentimos, ha ocurrido un error al cargar la pagina 😥";
+
+            // si no hay internet / o no hay conexión con el servidor
+            if(error.message === 'Network Error') return showAlert(
+                'error', 'Lo sentimos, Ha ocurrido un error al conectarse al servidor'
+            );
+            
+            // mostrar alerta de error al usuario 💥💥💥
+            showAlert('error', err);
+            dispatch( getErrorPatient({ data: null, status: '' }) );
+        }
+    }
+}
+
+export function deleteId(data) 
+{
     return async (dispatch)=> {
         try{
             // cargando...
@@ -166,5 +267,12 @@ export function deleteId(data) {
             // mostrar alerta de error al usuario 💥💥💥
             showAlert('error', err);
         }
+    }
+}
+
+export function resetState() 
+{
+    return (dispatch)=>{
+        dispatch( resetInitialState({ status: '' }) );
     }
 }

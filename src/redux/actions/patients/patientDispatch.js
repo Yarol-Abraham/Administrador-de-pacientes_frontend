@@ -2,8 +2,14 @@ import {
     CREATE_PATIENT_SUCCESS,
     CREATE_PATIENT_ERROR,
 
+    UPDATE_PATIENT_SUCCESS,
+    UPDATE_PATIENT_ERROR,
+
     LIST_PATIENT_SUCCESS,
     LIST_PATIENT_ERROR,
+
+    GET_PATIENT_SUCCESS,
+    GET_PATIENT_ERROR,
 
     DELETE_PATIENT_SUCCESS,
 
@@ -21,6 +27,17 @@ export const createErrorPatient = (data)=>({
     payload: data
 })
 
+// actualizar paciente
+export const updatePatient = (data)=>({
+    type: UPDATE_PATIENT_SUCCESS,
+    payload: data
+})
+
+export const updateErrorPatient = (data)=>({
+    type: UPDATE_PATIENT_ERROR,
+    payload: data
+})
+
 // listado de pacientes
 export const listPatients = (data) =>({
     type: LIST_PATIENT_SUCCESS,
@@ -29,6 +46,17 @@ export const listPatients = (data) =>({
 
 export const listErrorPatients = (data) =>({
     type:LIST_PATIENT_ERROR,
+    payload: data
+})
+
+// obtener un paciente
+export const getPatient = (data) =>({
+    type: GET_PATIENT_SUCCESS,
+    payload: data
+})
+
+export const getErrorPatient = (data) =>({
+    type: GET_PATIENT_ERROR,
     payload: data
 })
 

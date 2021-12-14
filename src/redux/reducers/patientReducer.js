@@ -2,8 +2,14 @@ import {
     CREATE_PATIENT_SUCCESS,
     CREATE_PATIENT_ERROR,
 
+    UPDATE_PATIENT_SUCCESS,
+    UPDATE_PATIENT_ERROR,
+
     LIST_PATIENT_SUCCESS,
     LIST_PATIENT_ERROR,
+
+    GET_PATIENT_SUCCESS,
+    GET_PATIENT_ERROR,
 
     DELETE_PATIENT_SUCCESS,
 
@@ -22,6 +28,7 @@ function patientReducer(state = initialState, action) {
     
     switch (action.type) {
         
+        case UPDATE_PATIENT_ERROR:
         case CREATE_PATIENT_ERROR: 
             return{
                 ...state,
@@ -34,6 +41,12 @@ function patientReducer(state = initialState, action) {
                 patients: [ ...state.patients, action.payload.data ],
                 status: action.payload.status
             }
+        
+        case UPDATE_PATIENT_SUCCESS:
+            return{
+                ...state,
+                status: action.payload.status
+            }
             
         case LIST_PATIENT_SUCCESS:
             return{
@@ -42,6 +55,20 @@ function patientReducer(state = initialState, action) {
                 status: action.payload.status
             }
         
+        case GET_PATIENT_SUCCESS:
+            return{
+                ...state,
+                patient: action.payload.data,
+                status: action.payload.status
+            }
+        
+        case GET_PATIENT_ERROR:
+            return{
+                ...state,
+                patient: action.payload.data,
+                status: action.payload.status
+            }
+
         case DELETE_PATIENT_SUCCESS:
             return{
                 ...state,
@@ -61,7 +88,8 @@ function patientReducer(state = initialState, action) {
         case RESET_INITIAL_STATE:
             return {
                 ...state,
-                status: action.payload.status
+                status: action.payload.status,
+                errors: []
             }
 
         default:

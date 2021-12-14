@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
+import { resetState } from '../redux/actions/patients/patientAction';
+
 function usePatient (data = {}, fn){
     
     const dispatch = useDispatch();
@@ -7,8 +9,11 @@ function usePatient (data = {}, fn){
   
     function handlePatient(){ if(typeof fn === 'function') dispatch( fn(data) ); }
     
+    function handleReset() { if(typeof fn === 'function') dispatch( resetState() );  }
+
     return {
         handlePatient,
+        handleReset,
         patient
     }
 }
