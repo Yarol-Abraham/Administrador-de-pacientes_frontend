@@ -22,7 +22,7 @@ function ListPatients() {
               <tr>
                 <th className="border" >Nombre</th>
                 <th className="border" >Descripcion</th>
-                <th className="border" >Telefono</th>
+                <th className="border" >Fecha</th>
                 <th className="border" >Acciones</th>
               </tr>
             </thead>
@@ -32,7 +32,7 @@ function ListPatients() {
                   <tr key={el._id}>
                     <td className="border p-1 text-sm">{el.nombres + " " + el.apellidos}</td>
                     <td className="border p-1 text-sm">{el.descripcion}</td>
-                    <td className="border p-1 text-sm">{el.telefono}</td>
+                    <td className="w-28 border p-1 text-center text-sm">{el.fecha}</td>
                     <td className="border p-1">
                       <div className="flex flex-row items-center justify-center">
                         <Modal patient={el} />
