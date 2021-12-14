@@ -13,6 +13,8 @@ import {
 
     DELETE_PATIENT_SUCCESS,
 
+    SEARCH_PATIENT_SUCCESS,
+
     RESET_INITIAL_STATE
 } from '../types/patients';
 

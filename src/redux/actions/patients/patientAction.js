@@ -16,7 +16,7 @@ import {
     getErrorPatient,
 
     deletePatient,
-    
+
     resetInitialState
 } from './patientDispatch';
 
@@ -140,15 +140,20 @@ export function update(dataForm)
     }
 }
 
-export function findAll() 
+export function findAll(params = {}) 
 {
     return async (dispatch) =>{
         try {
             // cargando...
             showLoading();
+            
+            // formatear la url si existe parametros
 
+            let url = "/patients/all";
+            if(Object.values(params).length > 0 ) url = `/patients/all?${params.buscar}=${params.valor}`; 
+            
             // esperar respuesta del servidor
-            const response = await createAxios.get('/patients/all');
+            const response = await createAxios.get(url);
             
             // eliminar cargando
             hideLoading();

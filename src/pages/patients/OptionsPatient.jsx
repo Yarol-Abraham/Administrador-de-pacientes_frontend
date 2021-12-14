@@ -4,7 +4,7 @@ function OptionsPatient() {
 
     return (
       <>
-        <div className="p-2 w-full md:w-3/6 flex flex-col md:flex-row flex-wrap md:items-end">
+        <div className="p-2 w-full md:w-1/5 flex flex-col md:flex-row flex-wrap md:items-end">
             <Link 
               className="h-10 bg-indigo-400
               mb-2 md:mb-0 mx-2 p-2 
