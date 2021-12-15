@@ -5,14 +5,13 @@ import {
     LOGIN_USER_SUCCESS,
     LOGOUT_USER_SUCCESS,
     AUTH_USER_SUCCESS,
-    AUTH_USER_ERROR
+    AUTH_USER_ERROR,
+    UPDATE_PASSWORD_SUCCESS
 } from '../types/auth';
 
 import {
     UPDATE_USER_SUCCESS,
-    UPDATE_USER_ERROR,
-    UPDATE_PASSWORD_ERROR,
-    UPDATE_PASSWORD_SUCCESS
+    UPDATE_USER_ERROR
 } from '../types/user';
 
 const initialState = {
@@ -20,6 +19,7 @@ const initialState = {
     errors: [],
     message: "",
     status: '', // sucess / error / fail
+    token: null
 }
 
 const sendToken = (token)=>{
@@ -41,6 +41,7 @@ function authReducer(state = initialState, action){
                 errors: action.payload
             }
         
+        case UPDATE_PASSWORD_SUCCESS:
         case LOGIN_USER_SUCCESS:
         case SIGNUP_USER_SUCCESS:
             sendToken(action.payload.token)
@@ -48,9 +49,9 @@ function authReducer(state = initialState, action){
                 ...state,
                 user: action.payload.user,
                 status: 'success',
-                errors: []
+                errors: [],
             }
-        
+   
         case LOGOUT_USER_SUCCESS:
             removeToken()
             return{

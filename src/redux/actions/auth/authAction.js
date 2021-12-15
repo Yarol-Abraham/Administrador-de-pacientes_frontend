@@ -12,7 +12,8 @@ import {
     loginDispatch,
     logoutDispatch,
     authDispatch,
-    authErrorDispatch
+    authErrorDispatch,
+    updatePassword
 } from './authDispatch';
 
 //alerts
@@ -161,6 +162,55 @@ export function authUser() // verificar si existe autenticación
                 // enviar una alerta al usuario 💥💥💥
                 dispatch( authErrorDispatch({ message: err, status: 'error' }) ); 
             }    
+        }
+    }
+}
+
+export function updatePass(data) // actualizar la contraseña
+{
+    return async (dispatch)=>{
+        try {
+            // cargando...          
+            showLoading();
+
+            // esperar respuesta del servidor
+            const response = await createAxios.patch(`/user/updatePassword`, data);
+            
+            // eliminar cargando...
+            hideLoading();
+
+            // respuesta obtenida del servidor 🟢🟢🟢
+            const { data: { user }, token } = response.data;
+            
+            dispatch( updatePassword({ user, token }) );
+            
+            // mostrar alerta
+            showAlert('success', "Se ha actualizado correctamente tu contraseña");
+
+        } catch (error) {
+            // eliminar cargando...
+            hideLoading();
+                    
+            // obtener los posibles errores
+            let err = "Lo sentimos, No podemos acceder la pagina 😓";
+
+            // si no hay internet / o no hay conexión con el servidor
+            if(error.message === 'Network Error') return showAlert(
+                'error', 'Lo sentimos, Ha ocurrido un error al conectarse al servidor'
+            );
+            
+            // obtener el error del servidor si existe
+            if(error.response){
+
+                err = error.response.data;
+                
+                // enviar una alerta al usuario 💥💥💥
+                showAlert( 'error', err.message);
+
+            }else{
+                // enviar una alerta al usuario 💥💥💥
+                showAlert( 'error', err);
+            } 
         }
     }
 }

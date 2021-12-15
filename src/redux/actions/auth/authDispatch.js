@@ -4,7 +4,8 @@ import {
     LOGIN_USER_SUCCESS,
     LOGOUT_USER_SUCCESS,
     AUTH_USER_SUCCESS,
-    AUTH_USER_ERROR
+    AUTH_USER_ERROR,
+    UPDATE_PASSWORD_SUCCESS
 } from '../../types/auth';
 
 // crear usuario
@@ -38,5 +39,12 @@ export const authDispatch = (data)=>({
 
 export const authErrorDispatch = (data)=>({
     type: AUTH_USER_ERROR,
+    payload: data
+});
+
+
+// actualizar contraseña
+export const updatePassword = (data)=>({
+    type: UPDATE_PASSWORD_SUCCESS,
     payload: data
 });

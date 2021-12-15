@@ -4,11 +4,7 @@ import createAxios from '../../../config/axios';
 // dispatch
 import { 
     updateUser,
-    updateErrorUser,
-
-    updatePassword,
-    updateErrorPassword
-
+    updateErrorUser
 } from './userDispatch';
 
 //alerts
@@ -65,11 +61,5 @@ export function updateMe(dataForm) {
             // enviar los errores al usuario 💥💥💥
             dispatch( updateErrorUser(err) );
         }
-    }
-}
-
-export function updatePass(data) {
-    return async ()=>{
-
     }
 }

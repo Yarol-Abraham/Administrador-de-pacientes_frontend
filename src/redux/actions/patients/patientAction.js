@@ -174,7 +174,6 @@ export function findAll(params = {})
 
             // eliminar cargando...
             hideLoading();
-
             // obtener los posibles errores 
             let err = "Lo sentimos, ha ocurrido un error al cargar la pagina 😥";
 
