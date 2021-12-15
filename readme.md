@@ -1,4 +1,4 @@
-<h1 align="center">Administrador de pacientes👋</h1>
+<h1 align="center">Administrador de pacientes 🛏</h1>
 
 <ul>
     <li>
@@ -19,28 +19,23 @@
 ```sh
 npm install
 ```
-## USo
+## Uso
 
 ```sh
 npm run dev
 ```
 
-<p>librerias utilizadas para el proyecto 😅</p>
-
-<ul>
-    <li>
-        <p>axios</p>
-    </li>
-    <li>
-        <p>js-cookie</p>
-    </li>
-    <li>
-        <p>redux</p>
-    </li>
-</ul>
-
 <h3>Paginas de Autenticación</h3>
 <img src="/readme/admin_1.png" alt="preview" />
+
+
+<h3>Paginas de acceso al usuario</h3>
+<img src="/readme/admin_2.png" alt="preview" />
+<img src="/readme/admin_3.png" alt="preview" />
+<img src="/readme/admin_4.png" alt="preview" />
+
+<h3>Paginas de acceso al usuario - Telefono</h3>
+<img src="/readme/admin_5.png" alt="preview" />
 
 
 ## Author
