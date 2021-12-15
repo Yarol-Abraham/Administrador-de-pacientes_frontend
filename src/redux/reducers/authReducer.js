@@ -8,6 +8,13 @@ import {
     AUTH_USER_ERROR
 } from '../types/auth';
 
+import {
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_ERROR,
+    UPDATE_PASSWORD_ERROR,
+    UPDATE_PASSWORD_SUCCESS
+} from '../types/user';
+
 const initialState = {
     user: null, 
     errors: [],
@@ -27,6 +34,7 @@ function authReducer(state = initialState, action){
 
     switch (action.type) {
         
+        case UPDATE_USER_ERROR:
         case SIGNUP_USER_ERROR:
             return {
                 ...state,
@@ -52,7 +60,8 @@ function authReducer(state = initialState, action){
                 errors:action.payload.errors,
                 message: action.payload.message
             }
-
+        
+        case UPDATE_USER_SUCCESS:
         case AUTH_USER_SUCCESS:
             return{
                 ...state,
