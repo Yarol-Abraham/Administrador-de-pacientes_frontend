@@ -25,6 +25,14 @@ npm install
 npm run dev
 ```
 
+## Crear
+
+```sh
+crear un archivo llamado .env.local y crea las variables de entorno
+- VITE_BASE_URL= http://dominio/api/v1 # agrega la url de la api
+- VITE_EXPIRE_IN=90 # fecha de caducaciónn de cada token
+```
+
 <h3>Paginas de Autenticación</h3>
 <img src="/readme/admin_1.png" alt="preview" />
 
