@@ -4,9 +4,12 @@
     <li>
         <p>Este proyecto fue creado con React,Redux y Tailwindcss como front-end</p>
     </li>
+     <li>
+        <p>Este proyecto es 100% responsivo 🟢🟢🟢</p>
+    </li>
     <li>
         <p>Este proyecto consume una api creada por mi, link del repositorio del back-end 
-        <a href="#">Administrador-de-pacientes_backend</a>
+        <a href="https://github.com/Yarol-Abraham/Administrador-de-pacientes_frontend">Administrador-de-pacientes_backend</a>
         </p>
     </li>
 </ul>
@@ -28,7 +31,7 @@ npm run dev
 ## Crear
 
 ```sh
-crear un archivo llamado .env.local y crea las variables de entorno
+crear un archivo llamado ```.env.local``` y crea las variables de entorno
 - VITE_BASE_URL= http://dominio/api/v1 # agrega la url de la api
 - VITE_EXPIRE_IN=90 # fecha de caducaciónn de cada token
 ```
