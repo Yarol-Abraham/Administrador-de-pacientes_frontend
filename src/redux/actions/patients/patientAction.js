@@ -148,14 +148,13 @@ export function findAll(params = {})
             showLoading();
             
             // formatear la url si existe parametros
-
             let url = "/patients/all";
             if(Object.values(params).length > 0 ){
-                if(params.buscar && params.valor) url = `/patients/all?${params.buscar}=${params.valor}`;
-                if(params.sort) url = `/patients/all?sort=${params.sort}`;
+                if(params.valor) url = `${url}?search=${params.valor}`;
+                if(params.sort) url = `${url}?sort=${params.sort}`;
+                if(params.page) url = `${url}?page=${params.page}`;
             }
 
-            console.log(url);
             // esperar respuesta del servidor
             const response = await createAxios.get(url);
             
@@ -163,8 +162,8 @@ export function findAll(params = {})
             hideLoading();
 
             // respuesta obtenida del servidor 🟢🟢🟢
-            const { data, status } = response.data;
-            dispatch( listPatients({ data, status }) );
+            const { data, status, results } = response.data;
+            dispatch( listPatients({ data, status, results }) );
             
             // restablecer el status
             setTimeout(() => {

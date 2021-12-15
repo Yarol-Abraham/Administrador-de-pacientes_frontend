@@ -118,7 +118,7 @@ function Signup() {
                 type="submit" 
                 className="w-full my-2 rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-              Iniciar Sesión
+              Crear Cuenta
               </button>
               <Link to={"/login"} className="text-center text-gray-400" >¿Ya tienes una cuenta?,  inicia sesión.</Link>
             </form>

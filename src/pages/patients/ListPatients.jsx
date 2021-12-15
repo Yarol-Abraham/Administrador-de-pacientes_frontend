@@ -58,7 +58,7 @@ function ListPatients() {
               Alerta
             </div>
             <div className="border border-t-0 border-green-400 rounded-b bg-green-100 px-4 py-3 text-green-700">
-              <p>Aquí apareceran tus pacientes agregados ✔✔✔</p>
+              <p>Al parecer no hay pacientes todavia en este apartado !!!!</p>
             </div>
         </div>
       }

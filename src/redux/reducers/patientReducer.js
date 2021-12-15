@@ -13,14 +13,13 @@ import {
 
     DELETE_PATIENT_SUCCESS,
 
-    SEARCH_PATIENT_SUCCESS,
-
     RESET_INITIAL_STATE
 } from '../types/patients';
 
 const initialState = {
     patient: null,
     patients: [],
+    results: 0,
     errors: [],
     status: '', // success / error 0 fail
     message: ''
@@ -54,6 +53,7 @@ function patientReducer(state = initialState, action) {
             return{
                 ...state,
                 patients: action.payload.data,
+                results: action.payload.results,
                 status: action.payload.status
             }
         
